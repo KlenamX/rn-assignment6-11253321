@@ -1,5 +1,7 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 export default function Header() {
   return (
@@ -15,10 +17,14 @@ export default function Header() {
       </View>
       <View style={styles.left}>
         <TouchableOpacity>
-          <Image source={require("../assets/images/Search.png")} />
+          <AntDesign name="search1" size={30} color="black" />
         </TouchableOpacity>
         <TouchableOpacity>
-          <Image source={require("../assets/images/shoppingBag.png")} />
+          <MaterialCommunityIcons
+            name="shopping-outline"
+            size={30}
+            color="black"
+          />
         </TouchableOpacity>
       </View>
     </View>
