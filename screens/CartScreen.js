@@ -44,6 +44,15 @@ const Cart = () => {
     }
   };
 
+  const calculateTotal = () => {
+    return cartItems
+      .reduce(
+        (total, item) => total + parseFloat(item.price.replace("$", "")),
+        0
+      )
+      .toFixed(2);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -82,45 +91,14 @@ const Cart = () => {
         )}
         keyExtractor={(item) => item.id.toString()} // Ensure item.id is string or number
       />
-      <View
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-        }}
-      >
-        <View
-          style={{
-            paddingHorizontal: 20,
-            height: 50,
-            alignItems: "center",
-            backgroundColor: "white",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <Text style={{ fontSize: 16, fontWeight: 500 }}>EST. TOTAL</Text>
-          <Text style={{ fontSize: 18, fontWeight: 500, color: "orange" }}>
-            $120
-          </Text>
+      <View style={styles.totalContainer}>
+        <View style={styles.totalRow}>
+          <Text style={styles.totalText}>EST. TOTAL</Text>
+          <Text style={styles.totalAmount}>${calculateTotal()}</Text>
         </View>
-        <TouchableOpacity
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            height: 50,
-            gap: 10,
-            backgroundColor: "black",
-            right: 0,
-            left: 0,
-          }}
-        >
+        <TouchableOpacity style={styles.checkoutButton}>
           <Ionicons name="bag-outline" size={26} color="white" />
-          <Text style={{ fontSize: 18, fontWeight: "500", color: "white" }}>
-            CHECKOUT
-          </Text>
+          <Text style={styles.checkoutButtonText}>CHECKOUT</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -161,6 +139,42 @@ const styles = StyleSheet.create({
   checkoutImage: {
     width: 180,
     height: 50,
+  },
+  totalContainer: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  totalRow: {
+    paddingHorizontal: 20,
+    height: 50,
+    alignItems: "center",
+    backgroundColor: "white",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  totalText: {
+    fontSize: 16,
+    fontWeight: "500",
+  },
+  totalAmount: {
+    fontSize: 18,
+    fontWeight: "500",
+    color: "orange",
+  },
+  checkoutButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    height: 50,
+    backgroundColor: "black",
+  },
+  checkoutButtonText: {
+    fontSize: 18,
+    fontWeight: "500",
+    color: "white",
+    marginLeft: 10,
   },
 });
 
