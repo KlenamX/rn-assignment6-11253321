@@ -10,6 +10,7 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Cards from "../components/Cards";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -81,6 +82,47 @@ const Cart = () => {
         )}
         keyExtractor={(item) => item.id.toString()} // Ensure item.id is string or number
       />
+      <View
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+        }}
+      >
+        <View
+          style={{
+            paddingHorizontal: 20,
+            height: 50,
+            alignItems: "center",
+            backgroundColor: "white",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <Text style={{ fontSize: 16, fontWeight: 500 }}>EST. TOTAL</Text>
+          <Text style={{ fontSize: 18, fontWeight: 500, color: "orange" }}>
+            $120
+          </Text>
+        </View>
+        <TouchableOpacity
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            height: 50,
+            gap: 10,
+            backgroundColor: "black",
+            right: 0,
+            left: 0,
+          }}
+        >
+          <Ionicons name="bag-outline" size={26} color="white" />
+          <Text style={{ fontSize: 18, fontWeight: "500", color: "white" }}>
+            CHECKOUT
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

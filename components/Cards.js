@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -22,12 +15,16 @@ export default function Cards({
   cartView, // New prop to indicate cart view
 }) {
   const [isAdding, setIsAdding] = useState(false);
+  const [showMessage, setShowMessage] = useState(false); // State for showing message
 
   const handleAddToCart = async () => {
     setIsAdding(true);
     await addToCart(product);
     setIsAdding(false);
-    Alert.alert("Success", "Item added to cart!");
+    setShowMessage(true);
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 1000); // Hide message after 2 seconds
   };
 
   return (
@@ -61,6 +58,9 @@ export default function Cards({
           {price}
         </Text>
       </View>
+      {showMessage && (
+        <Text style={styles.addToCartMessage}>Item added to cart!</Text>
+      )}
     </View>
   );
 }
@@ -68,6 +68,7 @@ export default function Cards({
 const styles = StyleSheet.create({
   container: {
     width: 165,
+    position: "relative", // Added for absolute positioning of the message
   },
   rowContainer: {
     flexDirection: "row",
@@ -123,5 +124,16 @@ const styles = StyleSheet.create({
   },
   cartPrice: {
     fontSize: 24, // Larger font size for cart view
+  },
+  addToCartMessage: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    textAlign: "center",
+    backgroundColor: "orange",
+    color: "white",
+    padding: 5,
+    borderRadius: 5,
   },
 });
