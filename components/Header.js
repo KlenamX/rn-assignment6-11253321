@@ -2,8 +2,10 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Header() {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <TouchableOpacity>
@@ -19,7 +21,11 @@ export default function Header() {
         <TouchableOpacity>
           <AntDesign name="search1" size={30} color="black" />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Cart");
+          }}
+        >
           <MaterialCommunityIcons
             name="shopping-outline"
             size={30}

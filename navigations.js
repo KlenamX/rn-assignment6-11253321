@@ -6,7 +6,7 @@ const Stack = createNativeStackNavigator();
 import { View, Text } from "react-native";
 import React from "react";
 import HomeScreen from "./screens/HomeScreen";
-import CheckoutScreen from "./screens/CheckoutScreen";
+import CartScreen from "./screens/CartScreen";
 
 export default function Navigations() {
   return (
@@ -17,7 +17,7 @@ export default function Navigations() {
         }}
       >
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Checkout" component={CheckoutScreen} />
+        <Stack.Screen name="Cart" component={CartScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
